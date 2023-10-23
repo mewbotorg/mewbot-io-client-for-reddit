@@ -23,6 +23,8 @@ SPDX-License-Identifier: CC-BY-4.0
 
 Allows mewbot to connect to reddit.
 
+In keeping with the terms of use of the reddit API, this plugin is called mewbot-io-client-for-reddit.
+
 ----
 
 This [Mewbot](https://github.com/mewbotorg/mewbot) io plugin was generated with [Cookiecutter](https://github.com/audreyr/cookiecutter) along with [@ajcameron](https://github.com/ajcameron)'s [template-mewbot-plugin](https://github.com/mewbotorg/template-mewbot-plugin) cookiecutter template.

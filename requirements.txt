@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
+asyncpraw~=7.7.1
+
 mewbot~=0.0.3
 mewbot-api~=0.0.3
 mewbot-io~=0.0.3
