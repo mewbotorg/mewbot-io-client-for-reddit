@@ -134,6 +134,6 @@ setuptools.setup(
 
     ],
 
-    entry_points={"mewbot-v1": ["client_for_reddit = mewbot.io.client_for_reddit"]}
+    entry_points={"mewbotv1": ["client_for_reddit = mewbot.io.client_for_reddit"]}
 
 )
