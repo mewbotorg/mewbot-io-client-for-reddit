@@ -1,4 +1,9 @@
-from typing import Set, List, Dict
+"""
+Holds specialized dataclasses for holding the cached state of reddit.
+"""
+
+
+from typing import Dict, List, Set
 
 import dataclasses
 
@@ -7,6 +12,9 @@ import asyncpraw  # type: ignore
 
 @dataclasses.dataclass
 class CommentContentsState:
+    """
+    Holds the state of a set of comments.
+    """
 
     # Keyed with the subreddit and valued with a set of the ids which have been seen
     seen_comments: Dict[str, Set[str]]
@@ -30,6 +38,9 @@ class CommentContentsState:
 
 @dataclasses.dataclass
 class SubmissionContentState:
+    """
+    Holds the state of a set of submissions.
+    """
 
     # Likewise we have submissions
     seen_submissions: Dict[str, Set[str]]

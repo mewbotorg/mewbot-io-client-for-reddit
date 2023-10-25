@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 
+"""
+This provides an IOConfig to act as a reddit self bot.
+"""
+
 from typing import Sequence
 
 import asyncpraw  # type: ignore
-
 from mewbot.api.v1 import Output
 
-from ..io_configs import RedditIOBase
+from ..io_configs import RedditIOConfigBase
 from .credentials import RedditSelfCredentials
 
 
-class RedditSelfIO(RedditIOBase):
+class RedditSelfIOConfig(RedditIOConfigBase):
     """
     Allows mewbot to connect to Reddit using a user's credentials.
+
     Self bots may not be fully supported and may not present all facets of the API.
+    Additionally, anecdotally, they are much more likely to be banned.
     """
 
     self_credentials: RedditSelfCredentials = RedditSelfCredentials(
@@ -27,6 +32,7 @@ class RedditSelfIO(RedditIOBase):
     def username(self) -> str:
         """
         Get the username being used to connected to reddit.
+
         :return:
         """
         return self.self_credentials.username
@@ -34,7 +40,8 @@ class RedditSelfIO(RedditIOBase):
     @username.setter
     def username(self, value: str) -> None:
         """
-        Set the value of the username used to connect to reddit.
+        Set the value of the username used to connect to reddit - only valid before connection.
+
         :param value:
         :return:
         """
@@ -44,6 +51,7 @@ class RedditSelfIO(RedditIOBase):
     def password(self) -> str:
         """
         Get the password you use to connect to reddit.
+
         :return:
         """
         return self.self_credentials.password
@@ -51,7 +59,8 @@ class RedditSelfIO(RedditIOBase):
     @password.setter
     def password(self, value: str) -> None:
         """
-        Set the password used to connect to reddit.
+        Set the password used to connect to reddit - only valid before connection is made.
+
         :param value:
         :return:
         """
@@ -61,6 +70,7 @@ class RedditSelfIO(RedditIOBase):
     def user_agent(self) -> str:
         """
         Get the user_agent used to connect to reddit.
+
         :return:
         """
         return self.self_credentials.user_agent
@@ -68,7 +78,8 @@ class RedditSelfIO(RedditIOBase):
     @user_agent.setter
     def user_agent(self, value: str) -> None:
         """
-        Set the user agent you're using to connect to reddit
+        Set the user agent you're using to connect to reddit.
+
         :param value:
         :return:
         """
@@ -77,6 +88,7 @@ class RedditSelfIO(RedditIOBase):
     def complete_authorization_flow(self) -> None:
         """
         Login to reddit using bot credentials.
+
         :return:
         """
         reddit = asyncpraw.Reddit(
@@ -91,6 +103,7 @@ class RedditSelfIO(RedditIOBase):
     def get_outputs(self) -> Sequence[Output]:
         """
         At the moment, this class does not support outputs.
+
         :return:
         """
         return []

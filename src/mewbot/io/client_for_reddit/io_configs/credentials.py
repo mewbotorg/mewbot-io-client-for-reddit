@@ -1,3 +1,8 @@
+"""
+Contains helper dataclasses for all the different types of credentials we might use.
+"""
+
+
 import dataclasses
 
 

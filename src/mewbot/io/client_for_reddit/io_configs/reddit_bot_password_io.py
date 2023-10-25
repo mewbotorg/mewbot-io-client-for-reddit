@@ -1,26 +1,33 @@
 #!/usr/bin/env python3
 
-from typing import List, Sequence
+"""
+IOConfig for a bot which acquires its user credentials via plain text stored passwords.
+"""
+
+from typing import Sequence
 
 import logging
 
 import asyncpraw  # type: ignore
-
 from mewbot.api.v1 import Output
 
-from ..io_configs import RedditIOBase
+from ..io_configs import RedditIOConfigBase
 from .credentials import RedditPasswordCredentials
 
 
-class RedditPasswordIO(RedditIOBase):
+class RedditPasswordIOConfig(RedditIOConfigBase):
     """
-    Allows mewbot to connect to Reddit using a user's credentials along with a bots.
+    Provide both bot and user credentials in plain text.
+
+    Reddit needs two types of credentials for a bot to log in
+     - bot credentials
+     - user credentials
+
+    This IOConfig allows you to provide both in plain text.
     If you do not want to provide user credential (in plain text in a YAML file) then use
     the RedditBotIO config - where a browser will be opened and you will be prompted to
     authenticate into reddit.
     """
-
-    __name__: str = "RedditPasswordIO"
 
     # Credentials to store all the info needed to log into reddit
     hybrid_credentials: RedditPasswordCredentials = RedditPasswordCredentials(
@@ -32,16 +39,20 @@ class RedditPasswordIO(RedditIOBase):
         user_agent="testscript by some guy",
     )
 
-    _subreddits: List[str]
+    _subreddits: list[str]
 
     _logger: logging.Logger
 
     @property
     def display_name(self) -> str:
-        return str(self.__name__)
+        """
+        The name of this IOConfig - for display and printing purposes.
+
+        :return:
+        """
+        return str(type(self).__name__)
 
     def __init__(self) -> None:
-
         super().__init__()
 
         self._logger = logging.getLogger(__name__ + ":" + type(self).__name__)
@@ -51,6 +62,7 @@ class RedditPasswordIO(RedditIOBase):
     def client_id(self) -> str:
         """
         Get the id of your bot within reddit.
+
         :return:
         """
         return self.hybrid_credentials.client_id
@@ -58,7 +70,8 @@ class RedditPasswordIO(RedditIOBase):
     @client_id.setter
     def client_id(self, value: str) -> None:
         """
-        Set the id of your bot
+        Set the id of your bot - must happen before connection.
+
         :param value:
         :return:
         """
@@ -67,7 +80,8 @@ class RedditPasswordIO(RedditIOBase):
     @property
     def client_secret(self) -> str:
         """
-        Get the client secret
+        Get the client secret.
+
         :return:
         """
         return self.hybrid_credentials.client_secret
@@ -75,7 +89,8 @@ class RedditPasswordIO(RedditIOBase):
     @client_secret.setter
     def client_secret(self, value: str) -> None:
         """
-        Set the client secret.
+        Set the client secret - must happen before connection.
+
         :param value:
         :return:
         """
@@ -85,6 +100,7 @@ class RedditPasswordIO(RedditIOBase):
     def user_agent(self) -> str:
         """
         Get the user_agent used to connect to reddit.
+
         :return:
         """
         return self.hybrid_credentials.user_agent
@@ -92,7 +108,8 @@ class RedditPasswordIO(RedditIOBase):
     @user_agent.setter
     def user_agent(self, value: str) -> None:
         """
-        Set the user agent you're using to connect to reddit
+        Set the user agent you're using to connect to reddit - must happen before connection.
+
         :param value:
         :return:
         """
@@ -102,6 +119,7 @@ class RedditPasswordIO(RedditIOBase):
     def username(self) -> str:
         """
         Get the username being used to connected to reddit.
+
         :return:
         """
         return self.hybrid_credentials.username
@@ -109,7 +127,8 @@ class RedditPasswordIO(RedditIOBase):
     @username.setter
     def username(self, value: str) -> None:
         """
-        Set the value of the username used to connect to reddit.
+        Set the value of the username used to connect to reddit - must happen before connection.
+
         :param value:
         :return:
         """
@@ -118,7 +137,8 @@ class RedditPasswordIO(RedditIOBase):
     @property
     def password(self) -> str:
         """
-        Get the password you use to connect to reddit.
+        Get the password you used to connect to reddit.
+
         :return:
         """
         return self.hybrid_credentials.password
@@ -126,7 +146,8 @@ class RedditPasswordIO(RedditIOBase):
     @password.setter
     def password(self, value: str) -> None:
         """
-        Set the password used to connect to reddit.
+        Set the password used to connect to reddit - must happen before connection.
+
         :param value:
         :return:
         """
@@ -134,7 +155,8 @@ class RedditPasswordIO(RedditIOBase):
 
     def complete_authorization_flow(self) -> None:
         """
-        Login to reddit using bot credentials.
+        Login to reddit using bot credentials - with pre-added password.
+
         :return:
         """
         reddit = asyncpraw.Reddit(
@@ -142,6 +164,7 @@ class RedditPasswordIO(RedditIOBase):
             password=self.hybrid_credentials.password,
             client_id=self.hybrid_credentials.client_id,
             client_secret=self.hybrid_credentials.client_secret,
+            # Must be set. Will be used if you have 2fa on your persoanl account
             redirect_uri=self.hybrid_credentials.redirect_uri,
             user_agent=self.hybrid_credentials.user_agent,
         )
@@ -150,7 +173,8 @@ class RedditPasswordIO(RedditIOBase):
 
     def get_outputs(self) -> Sequence[Output]:
         """
-        Return the reddit outputs - in this case
+        Return the reddit outputs - in this case just an empty list.
+
         :return:
         """
         return []

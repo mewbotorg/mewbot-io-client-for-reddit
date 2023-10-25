@@ -234,6 +234,7 @@ class RedditUserBannedFromSubredditInputEvent(RedditUserInteractedWithSubredditI
 class RedditUserInputEvent(RedditInputEvent):
     """
     Something has happened involving a reddit user that you watch.
+
     Please don't make it weird.
     """
 
@@ -262,6 +263,7 @@ class RedditUserEditedSubredditSubmissionInputEvent(
 ):
     """
     A user has edited one of the submission.
+
     This might, or might not, be a subreddit that your currently following.
     """
 
@@ -283,6 +285,7 @@ class RedditUserRemovedSubredditSubmissionInputEvent(
 ):
     """
     A user that you follow has posted to a subreddit.
+
     This might, or might not, be a subreddit that your currently following.
     """
 
@@ -366,6 +369,7 @@ class RedditUserEditProfileSubmissionInputEvent(
 ):
     """
     A user has edited one of the submission.
+
     This might, or might not, be a subreddit that your currently following.
     """
 
@@ -416,6 +420,7 @@ class RedditUserEditedCommentOnProfileSubmissionInputEvent(
 ):
     """
     A user that you follow has edited one of their comments on a post (submission).
+
     This might, or might not, be a subreddit that your currently following.
     """
 
@@ -482,3 +487,53 @@ class RedditPostVoteInputEvent(RedditVoteInputEvent):
 
 #
 # --------------------
+
+
+SUBREDDIT_FOCUSSED_INPUT_EVENTS = (
+    # - a user has interacted with the subreddit
+    RedditUserJoinedSubredditInputEvent,
+    RedditUserLeftSubredditInputEvent,
+    RedditUserBannedFromSubredditInputEvent,
+    # - a user has created a submission
+    SubRedditSubmissionPinnedInputEvent,
+    SubRedditSubmissionCreationInputEvent,
+    SubRedditSubmissionDeletedInputEvent,
+    SubRedditSubmissionRemovedInputEvent,
+    SubRedditSubmissionEditInputEvent,
+    # - a comment has been manipulated in the subreddit
+    SubRedditCommentCreationInputEvent,
+    SubRedditCommentEditInputEvent,
+    SubRedditCommentDeletedInputEvent,
+    SubRedditCommentRemovedInputEvent,
+)
+
+
+USER_FOSCUSSED_INPUT_EVENTS = (
+    # user first events
+    # - a user has manipulated a submission in a subreddit
+    RedditUserCreatedSubredditSubmissionInputEvent,
+    RedditUserEditedSubredditSubmissionInputEvent,
+    RedditUserDeletedSubredditSubmissionInputEvent,
+    RedditUserRemovedSubredditSubmissionInputEvent,
+    # - a user has manipulated a comment in a subreddit
+    RedditUserCreatedCommentOnSubredditSubmissionInputEvent,
+    RedditUserEditedCommentOnSubredditSubmissionInputEvent,
+    RedditUserDeletedCommentOnSubredditSubmissionInputEvent,
+    RedditUserRemovedCommentOnSubredditSubmissionInputEvent,
+    # - a user has manipulated a submission in their profile
+    RedditUserCreatedProfileSubmissionInputEvent,
+    RedditUserEditProfileSubmissionInputEvent,
+    RedditUserDeletedProfileSubmissionInputEvent,
+    RedditUserRemovedProfileSubmissionInputEvent,
+    # - a user has manipulated a comment in their profile
+    RedditUserCreatedCommentOnProfileSubmissionInputEvent,
+    RedditUserEditedCommentOnProfileSubmissionInputEvent,
+    RedditUserDeletedCommentOnProfileSubmissionInputEvent,
+    RedditUserRemovedCommentOnProfileSubmissionInputEvent,
+    # - Not entirely sure how to implement this
+    # RedditPersonaVoteInputEvent,
+    # RedditPostVoteInputEvent,
+)
+
+
+USED_INPUT_EVENTS = SUBREDDIT_FOCUSSED_INPUT_EVENTS + USER_FOSCUSSED_INPUT_EVENTS

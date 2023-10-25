@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: BSD-2-Clause
 
 """
-mewbot_io_client_for_reddit main module for connecting to a service.
+Provides bindings to allow mewbot to communicate with reddit.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.0.1"
