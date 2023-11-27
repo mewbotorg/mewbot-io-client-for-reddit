@@ -15,7 +15,7 @@ from ..io_configs import RedditIOConfigBase
 from .credentials import RedditPasswordCredentials
 
 
-class RedditPasswordIOConfig(RedditIOConfigBase):
+class RedditBotPasswordIOConfig(RedditIOConfigBase):
     """
     Provide both bot and user credentials in plain text.
 

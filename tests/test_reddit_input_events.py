@@ -7,44 +7,9 @@ Tests loading an example reddit config.
 
 from __future__ import annotations
 
-import pytest
-from mewbot.core import ConfigBlock
-from mewbot.loader import load_component
-
 
 CONFIG_YAML = "examples/trivial_reddit_bot.yaml"
 CONFIG_YAML_NAME = "trivial_reddit_bot.yaml"
-
-
-class TestLoader:
-    """
-    Base test loader class - contains core methods to load and run examples for testing purposes.
-    """
-
-    @staticmethod
-    def test_empty_config() -> None:
-        """
-        Tests trying to load a bad config block - an empty one.
-
-        :return:
-        """
-        # Build a bad config and give it to the bot
-        this_config = ConfigBlock()  # type: ignore
-        with pytest.raises(ValueError):  # @UndefinedVariable
-            _ = load_component(this_config)
-
-    @staticmethod
-    def test_bad_config() -> None:
-        """
-        Tests trying to load a config block with an invalid kind set.
-
-        :return:
-        """
-        # Build a bad config and give it to the bot
-        this_config = ConfigBlock()  # type: ignore
-        this_config["kind"] = "NULL"
-        with pytest.raises(ValueError):  # @UndefinedVariable
-            _ = load_component(this_config)
 
 
 # class TestLoaderConfigureBot(BaseTestClassWithConfig[RedditPasswordIOConfig]):

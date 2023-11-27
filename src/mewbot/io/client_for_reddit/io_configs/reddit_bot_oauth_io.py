@@ -13,7 +13,7 @@ from ..io_configs import RedditIOConfigBase
 from .credentials import RedditBotCredentials
 
 
-class RedditBotIOConfig(RedditIOConfigBase):
+class RedditBotOauthIOConfig(RedditIOConfigBase):
     """
     Client connected to reddit using a bot style credentials.
 

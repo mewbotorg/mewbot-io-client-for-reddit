@@ -6,4 +6,14 @@
 Provides bindings to allow mewbot to communicate with reddit.
 """
 
-__version__ = "0.0.1"
+from mewbot.io.client_for_reddit.io_configs.reddit_bot_oauth_io import (
+    RedditBotOauthIOConfig,
+)
+from mewbot.io.client_for_reddit.io_configs.reddit_bot_password_io import (
+    RedditBotPasswordIOConfig,
+)
+from mewbot.io.client_for_reddit.io_configs.reddit_self_io import RedditSelfIOConfig
+
+__version__ = "0.0.2"
+
+__all__ = ["RedditSelfIOConfig", "RedditBotPasswordIOConfig", "RedditBotOauthIOConfig"]
