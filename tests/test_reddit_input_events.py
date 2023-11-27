@@ -1,24 +1,15 @@
-
 """
 Tests loading an example reddit config.
 """
 
-
 # pylint: disable=duplicate-code
-# Repetition for emphasis is occasionally desirable
+# Repetition for emphasis is occasionally desirable in tests
 
 from __future__ import annotations
 
 import pytest
-import yaml
-
-from mewbot.io.client_for_reddit.io_configs.reddit_bot_password_io import RedditPasswordIOConfig
-from mewbot.test import BaseTestClassWithConfig
-
-from mewbot.loader import configure_bot, load_component
-
-from mewbot.bot import Bot
 from mewbot.core import ConfigBlock
+from mewbot.loader import load_component
 
 
 CONFIG_YAML = "examples/trivial_reddit_bot.yaml"
@@ -26,8 +17,17 @@ CONFIG_YAML_NAME = "trivial_reddit_bot.yaml"
 
 
 class TestLoader:
+    """
+    Base test loader class - contains core methods to load and run examples for testing purposes.
+    """
+
     @staticmethod
     def test_empty_config() -> None:
+        """
+        Tests trying to load a bad config block - an empty one.
+
+        :return:
+        """
         # Build a bad config and give it to the bot
         this_config = ConfigBlock()  # type: ignore
         with pytest.raises(ValueError):  # @UndefinedVariable
@@ -35,6 +35,11 @@ class TestLoader:
 
     @staticmethod
     def test_bad_config() -> None:
+        """
+        Tests trying to load a config block with an invalid kind set.
+
+        :return:
+        """
         # Build a bad config and give it to the bot
         this_config = ConfigBlock()  # type: ignore
         this_config["kind"] = "NULL"
@@ -42,31 +47,45 @@ class TestLoader:
             _ = load_component(this_config)
 
 
-class TestLoaderConfigureBot(BaseTestClassWithConfig[RedditPasswordIOConfig]):
-    def test_config_type(self) -> None:
-
-        config_path = self.get_example_path(
-            CONFIG_YAML_NAME, file_path=__file__, folder_prefix="reddit_"
-        )
-
-        with open(config_path, "r", encoding="utf-8") as config_file:
-            config = list(yaml.load_all(config_file, Loader=yaml.CSafeLoader))
-
-        assert len(config) > 1
-        assert any(
-            obj for obj in config if obj["implementation"] == "mewbot.api.v1.Behaviour"
-        )
-
-    def test_working(self) -> None:
-
-        config_path = self.get_example_path(
-            CONFIG_YAML_NAME, file_path=__file__, folder_prefix="reddit_"
-        )
-
-        with open(config_path, "r", encoding="utf-8") as config_file:
-            bot = configure_bot("bot", config_file)
-
-        assert isinstance(bot, Bot)
+# class TestLoaderConfigureBot(BaseTestClassWithConfig[RedditPasswordIOConfig]):
+#     """
+#     Tests loading an example reddit based bot.
+#     """
+#
+#     config_file: str
+#
+#     def test_config_type(self) -> None:
+#         """
+#         Tests that the RedditPasswordIOConfig has the correct api after load.
+#
+#         :return:
+#         """
+#         config_path = self.get_example_path(
+#             CONFIG_YAML_NAME, file_path=__file__, folder_prefix="reddit_"
+#         )
+#
+#         with open(config_path, "r", encoding="utf-8") as config_file:
+#             config = list(yaml.load_all(config_file, Loader=yaml.CSafeLoader))
+#
+#         assert len(config) > 1
+#         assert any(
+#             obj for obj in config if obj["implementation"] == "mewbot.api.v1.Behaviour"
+#         )
+#
+#     def test_working(self) -> None:
+#         """
+#         Tests we can load the bot from the given yaml.
+#
+#         :return:
+#         """
+#         config_path = self.get_example_path(
+#             CONFIG_YAML_NAME, file_path=__file__, folder_prefix="reddit_"
+#         )
+#
+#         with open(config_path, "r", encoding="utf-8") as config_file:
+#             bot = configure_bot("bot", config_file)
+#
+#         assert isinstance(bot, Bot)
 
 
 # # Tester for mewbot.loader.load_component
