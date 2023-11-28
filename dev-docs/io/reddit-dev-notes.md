@@ -6,7 +6,8 @@ As per the terms laid out on this page
  - This plugin is named mewbot-client_for_reddit (not mewbot-reddit, which would be the normal naming scheme)
  - This plugin is not developed by reddit.
  - This software is not officially endorsed or supported by reddit
- - The aim for this plugin is non-commercial. All source code is provided freely and is open source according to the terms of the licence. Which can be found in LICENSE.md
+ - The aim for this plugin is non-commercial. 
+ - All source code is provided freely and is open source according to the terms of the licence. Which can be found in LICENSE.md
 
 We're creating a script application. 
 Which will thus use password flow to authenticate.

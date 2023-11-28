@@ -1,6 +1,6 @@
 
 kind: IOConfig
-implementation: mewbot_reddit.io_configs.reddit_password_io.RedditPasswordIO
+implementation: mewbot.io.client_for_reddit.RedditBotPasswordIOConfig
 uuid: aaaaaaaa-aaaa-4aaa-0001-aaaaaaaaaa00
 properties:
   username: "[reddit-account-user-name]"
