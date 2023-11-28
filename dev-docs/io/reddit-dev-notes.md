@@ -357,5 +357,5 @@ Todo: It'd be a good idea to error if we try and set an attribute which does not
 4) Or it just doesn't - but you can override it
 5) The ability to include docs in with the main program as well
 6) Cannot currently detect when submissions are pinned and unpinned - might need a poll for it
-7) Currently the version of the subreddit monitor pointed at a user's profile yield the wrong type of events
+7) Currently, the version of the subreddit monitor pointed at a user's profile yield the wrong type of events
 8) A general means, in the YAML, to negate conditions

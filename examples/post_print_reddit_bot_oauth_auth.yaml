@@ -1,0 +1,29 @@
+
+kind: IOConfig
+implementation: mewbot.io.client_for_reddit.RedditBotOauthIOConfig
+uuid: aaaaaaaa-aaaa-4aaa-0001-aaaaaaaaaa00
+properties:
+  client_id: "[bot-client(app)-id]"
+  client_secret: "[bot-secret]"
+  subreddits: [  ]
+  redditors: [  ]
+
+
+---
+
+kind: Behaviour
+implementation: mewbot.api.v1.Behaviour
+uuid: aaaaaaaa-aaaa-4aaa-0001-aaaaaaaaaa01
+properties:
+  name: 'Echo Inputs'
+triggers:
+  - kind: Trigger
+    implementation: examples.mewbot_io_client_for_reddit_example_support.RedditInputTrigger
+    uuid: aaaaaaaa-aaaa-4aaa-0001-aaaaaaaaaa02
+    properties: {}
+conditions: []
+actions:
+  - kind: Action
+    implementation: examples.mewbot_io_client_for_reddit_example_support.RedditPrintAction
+    uuid: aaaaaaaa-aaaa-4aaa-0001-aaaaaaaaaa03
+    properties: {}

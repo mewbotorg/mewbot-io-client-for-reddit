@@ -38,7 +38,7 @@ https://reddithelp.com/hc/en-us/requests/new?ticket_form_id=14868593862164
 
 Guess we'll see if the credentials start working.
 
+5) They did - you need to add your username and password to the yaml - as well as a subreddit to watch.
 
-
-
+But it worked.
 
