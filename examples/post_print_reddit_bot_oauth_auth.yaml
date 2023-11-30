@@ -5,7 +5,7 @@ uuid: aaaaaaaa-aaaa-4aaa-0001-aaaaaaaaaa00
 properties:
   client_id: "[bot-client(app)-id]"
   client_secret: "[bot-secret]"
-  subreddits: [  ]
+  subreddits: [ "thinkpad", ]
   redditors: [  ]
 
 

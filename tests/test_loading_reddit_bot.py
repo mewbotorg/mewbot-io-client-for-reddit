@@ -7,6 +7,8 @@ Tests loading an example reddit config.
 
 from __future__ import annotations
 
+import pathlib
+
 import pytest
 import yaml
 
@@ -58,6 +60,18 @@ class TestLoaderConfigureBot(BaseTestClassWithConfig[RedditBotPasswordIOConfig])
 
     config_file: str
 
+    def get_example_path(self, example_name: str, file_path: str) -> str:
+        """
+        Get the path to an example from its name.
+
+        :param example_name:
+        :param file_path:
+        :return:
+        """
+        repo_root = pathlib.Path(file_path).parent.parent
+
+        assert True is False, repo_root
+
     def test_config_type(self) -> None:
         """
         Tests that the RedditPasswordIOConfig has the correct api after load.
@@ -65,7 +79,7 @@ class TestLoaderConfigureBot(BaseTestClassWithConfig[RedditBotPasswordIOConfig])
         :return:
         """
         config_path = self.get_example_path(
-            CONFIG_YAML_NAME, file_path=__file__, folder_prefix="reddit_"
+            CONFIG_YAML_NAME, file_path=__file__
         )
 
         with open(config_path, "r", encoding="utf-8") as config_file:

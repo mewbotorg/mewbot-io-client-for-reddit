@@ -107,6 +107,8 @@ class RedditBotOauthIOConfig(RedditIOConfigBase):
             user_agent=self.bot_credentials.user_agent,
         )
 
+        print(reddit.auth.url(scopes=["identity"], state="...", duration="permanent"))
+
         self.praw_reddit = reddit
 
     def get_outputs(self) -> Sequence[Output]:
