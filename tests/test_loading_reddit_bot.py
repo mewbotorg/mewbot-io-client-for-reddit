@@ -69,7 +69,11 @@ class TestLoaderConfigureBot(BaseTestClassWithConfig[RedditBotPasswordIOConfig])
         """
         repo_root = pathlib.Path(file_path).parent.parent
 
-        assert True is False, repo_root
+        example_path = repo_root / "examples" / example_name
+
+        if example_path.is_file():
+            return str(example_path.resolve())
+        raise NotImplementedError(f"Example {example_name = } not found from {file_path = }")
 
     def test_config_type(self) -> None:
         """
