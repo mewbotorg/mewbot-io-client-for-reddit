@@ -7,7 +7,6 @@ Tests loading an example reddit config.
 
 from __future__ import annotations
 
-
 CONFIG_YAML = "examples/trivial_reddit_bot.yaml"
 CONFIG_YAML_NAME = "trivial_reddit_bot.yaml"
 

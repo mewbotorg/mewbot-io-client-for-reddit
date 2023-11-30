@@ -11,6 +11,7 @@ from typing import Any, AsyncIterable, Dict, Set, Type
 
 from mewbot.api.v1 import Action, Trigger
 from mewbot.core import InputEvent, OutputEvent
+
 from mewbot.io.client_for_reddit.events import RedditInputEvent
 
 

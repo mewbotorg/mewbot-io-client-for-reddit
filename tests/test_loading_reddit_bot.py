@@ -11,7 +11,6 @@ import pathlib
 
 import pytest
 import yaml
-
 from mewbot.core import ConfigBlock
 from mewbot.loader import load_component
 from mewbot.test import BaseTestClassWithConfig
@@ -78,9 +77,7 @@ class TestLoaderConfigureBot(BaseTestClassWithConfig[RedditBotPasswordIOConfig])
 
         :return:
         """
-        config_path = self.get_example_path(
-            CONFIG_YAML_NAME, file_path=__file__
-        )
+        config_path = self.get_example_path(CONFIG_YAML_NAME, file_path=__file__)
 
         with open(config_path, "r", encoding="utf-8") as config_file:
             config = list(yaml.load_all(config_file, Loader=yaml.CSafeLoader))

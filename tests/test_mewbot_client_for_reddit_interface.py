@@ -1,9 +1,8 @@
-
-
 class TestMewbotIOAPI:
     """
     Tests the api for the mewbot-io-client-for-reddit.
     """
+
     @staticmethod
     def test_reddit_self_io_config_import() -> None:
         """
@@ -12,6 +11,7 @@ class TestMewbotIOAPI:
         :return:
         """
         from mewbot.io.client_for_reddit import RedditSelfIOConfig
+
         assert RedditSelfIOConfig is not None
 
     @staticmethod
@@ -22,6 +22,7 @@ class TestMewbotIOAPI:
         :return:
         """
         from mewbot.io.client_for_reddit import RedditBotPasswordIOConfig
+
         assert RedditBotPasswordIOConfig is not None
 
     @staticmethod
@@ -32,4 +33,5 @@ class TestMewbotIOAPI:
         :return:
         """
         from mewbot.io.client_for_reddit import RedditBotOauthIOConfig
+
         assert RedditBotOauthIOConfig is not None
